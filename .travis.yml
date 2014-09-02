@@ -17,6 +17,8 @@ after_success:
 deploy:
   provider: npm
   email: github-com@agachi.name
+  api_key:
+    secure: CGj4DdVrc1qXCS4uKsiXE/kJdDtoBvY9zvgkUVco+ZTxo0EUVpft8IICnxEn2q0fpw7hjFS2WyebapmSKTd6qfS6YaaxNIqIHC5f0aE6pNBSpp87hEDUHELdgS92NeBgkIrjZpBmSc328J9p3OLGy+vB99ejtaXKhjF7c1aHq0s=
   on:
     tags: true
     repo: avaly/hapi-simple-session
