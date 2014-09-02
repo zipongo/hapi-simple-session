@@ -25,9 +25,9 @@ gulp.task('test', function(){
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.all, [/*'jshint', 'jscs',*/ 'test']);
+	gulp.watch(paths.all, ['jshint', 'jscs', 'test']);
 });
 
 gulp.task('pre-commit', ['jshint', 'jscs']);
 
-gulp.task('default', [/*'jshint', 'jscs',*/ 'watch']);
+gulp.task('default', ['jshint', 'jscs', 'watch']);

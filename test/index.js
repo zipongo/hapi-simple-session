@@ -97,7 +97,7 @@ describe('hapi-simple-session', function() {
 		});
 	});
 
-	it('sets session value and wait till cache expires then fail to get it back', function(done) {
+	it('sets value and fail to get after cache expires', function(done) {
 		server.route([
 			{
 				method: 'GET',
@@ -165,7 +165,9 @@ describe('hapi-simple-session', function() {
 				method: 'GET',
 				path: '/1',
 				handler: function(request, reply) {
-					request.session.set({'some': '2'});
+					request.session.set({
+						some: '2'
+					});
 					return reply('1');
 				}
 			},
@@ -277,7 +279,7 @@ describe('hapi-simple-session', function() {
 		});
 	});
 
-	it('fails setting session key/value because of bad key/value arguments', function(done) {
+	it('fails setting key/value because of bad key format', function(done) {
 		server = new Hapi.Server(0, {
 			debug: false
 		});
@@ -287,7 +289,9 @@ describe('hapi-simple-session', function() {
 				method: 'GET',
 				path: '/1',
 				handler: function(request, reply) {
-					request.session.set({ 'some': '2' }, '2');
+					request.session.set({
+						some: '2'
+					}, '2');
 					return reply('1');
 				}
 			},
@@ -351,7 +355,7 @@ describe('hapi-simple-session', function() {
 		});
 	});
 
-	describe("#flash", function() {
+	describe('#flash', function() {
 		it('should get all flash messages when given no arguments', function(done) {
 			server.route([
 				{
@@ -436,8 +440,9 @@ describe('hapi-simple-session', function() {
 					path: '/2',
 					config: {
 						handler: function(request, reply) {
-							var errors = request.session.flash('error');
-							var nomsg = request.session.flash('nomsg');
+							var errors = request.session.flash('error'),
+								nomsg = request.session.flash('nomsg');
+
 							reply({
 								session: request.session._store,
 								errors: errors,
