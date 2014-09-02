@@ -1,0 +1,54 @@
+{
+  "name": "hapi-simple-session",
+  "version": "1.0.0",
+  "description": "Simple session support for Hapi",
+  "main": "index.js",
+  "author": {
+    "name": "Valentin Agachi",
+    "url": "http://agachi.name/"
+  },
+  "homepage": "https://github.com/avaly/hapi-simple-session",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/avaly/hapi-simple-session.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avaly/hapi-simple-session/issues"
+  },
+  "keywords": [
+    "hapi",
+    "plugin",
+    "session",
+    "cache",
+    "simple"
+  ],
+  "license": "ISC",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "lab",
+    "test": "lab -c -r html -o coverage.html",
+    "pre-commit": "gulp pre-commit",
+    "pre-push": "npm test"
+  },
+  "files": [
+    "README.md",
+    "index.js",
+    "lib"
+  ],
+  "dependencies": {
+    "node-uuid": "^1.4.1",
+    "hoek": "^2.4.1"
+  },
+  "devDependencies": {
+    "boom": "^2.5.1",
+    "gulp": "^3.8.6",
+    "gulp-jscs": "^1.0.0",
+    "gulp-jshint": "^1.8.1",
+    "gulp-lab": "^1.0.0",
+    "hapi": "^6.7.1",
+    "husky": "^0.6.1",
+    "lab": "^4.2.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "hapi-simple-session-example",
+  "version": "0.0.0",
+  "description": "hapi-simple-session example showing basic session support",
+  "main": "index.js",
+  "license": "BSD",
+  "dependencies": {
+    "hapi": "6.x.x",
+    "hapi-simple-session": "1.x.x"
+  }
+}
