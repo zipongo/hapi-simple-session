@@ -2,7 +2,7 @@
   "name": "hapi-simple-session",
   "version": "1.0.0",
   "description": "Simple session support for Hapi",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": {
     "name": "Valentin Agachi",
     "url": "http://agachi.name/"
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "lab",
-    "test": "lab -c -r html -o coverage.html",
+    "coverage": "lab -c -r html -o coverage.html",
     "pre-commit": "gulp pre-commit",
     "pre-push": "npm test"
   },

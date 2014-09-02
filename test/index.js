@@ -1,7 +1,7 @@
 var Lab = require('lab'),
 	Hapi = require('hapi'),
 	Boom = require('boom'),
-	subject = require('../'),
+	subject = require('../lib'),
 	lab = exports.lab = Lab.script(),
 	expect = Lab.expect,
 	before = lab.beforeEach,
