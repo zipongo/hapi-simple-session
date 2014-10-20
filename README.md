@@ -4,4 +4,9 @@
 
 > A simple Hapi session plugin
 
-Disclaimer: Based on the [yar](https://github.com/hapijs/yar) project
+Requires: [hapi](https://github.com/hapijs/hapi) 7+
+
+Disclaimer: Based on the [yar](https://github.com/hapijs/yar) project with the following features removed:
+
+- no cookie encryption
+- no lazy mode
