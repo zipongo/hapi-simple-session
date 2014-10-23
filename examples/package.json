@@ -6,6 +6,8 @@
   "main": "index.js",
   "license": "BSD",
   "dependencies": {
+    "catbox-memcached": "^1.0.3",
+    "catbox-redis": "^1.0.4",
     "hapi": "7.x.x"
   }
 }

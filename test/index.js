@@ -59,21 +59,23 @@ describe('hapi-simple-session', function() {
 		}, function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
-				server.inject({ method: 'GET', url: '/1' }, function(res) {
-					var header, cookie;
+				server.inject({
+					method: 'GET',
+					url: '/1'
+				}, function(res) {
+					var header;
 
 					expect(res.result).to.equal(1);
 
 					header = res.headers['set-cookie'];
 					expect(header.length).to.equal(1);
 					expect(header[0]).to.not.contain('Secure');
-					cookie = getCookie(res);
 
 					server.inject({
 						method: 'GET',
 						url: '/2',
 						headers: {
-							cookie: cookie
+							cookie: getCookie(res)
 						}
 					}, function(res2) {
 						var cookie2 = getCookie(res2);
@@ -91,6 +93,60 @@ describe('hapi-simple-session', function() {
 
 							done();
 						});
+					});
+				});
+			});
+		});
+	});
+
+	// Fixes issue https://github.com/hapijs/yar/issues/53
+	it('sets session value then gets it back with faulty server cache interface', function(done) {
+		server = new Hapi.Server(0, {
+			cache: require('./faulty-cache')
+		});
+
+		server.route([
+			{
+				method: 'GET',
+				path: '/1',
+				handler: function(request, reply) {
+					request.session.set('foo', 'bar');
+					return reply(Object.keys(request.session._store).length);
+				}
+			}, {
+				method: 'GET',
+				path: '/2',
+				handler: function(request, reply) {
+					var cached = request.session.get('foo');
+					return reply(cached);
+				}
+			}
+		]);
+
+		server.pack.register({
+			plugin: subject
+		}, function(err) {
+			expect(err).to.not.exist;
+			server.start(function() {
+				server.inject({
+					method: 'GET',
+					url: '/1'
+				}, function(res) {
+					var header = res.headers['set-cookie'];
+
+					expect(header.length).to.equal(1);
+					expect(res.result).to.equal(1);
+
+					server.inject({
+						method: 'GET',
+						url: '/2',
+						headers: {
+							cookie: getCookie(res)
+						}
+					}, function(res2) {
+						expect(res2.result).to.equal('bar');
+
+						done();
 					});
 				});
 			});
