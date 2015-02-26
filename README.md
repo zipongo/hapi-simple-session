@@ -6,7 +6,13 @@
 
 Requires: [hapi](https://github.com/hapijs/hapi) 7+
 
-Disclaimer: Based on the [yar](https://github.com/hapijs/yar) project with the following features removed:
+Disclaimer: Based on [hapi-simple-session](https://github.com/avaly/hapi-simple-session) project with the following features added:
+
+- request.session.store() for the ability to save session to cache during request
+- cookie is created even if no data is stored in it
+
+
+Original Disclaimer: Based on the [yar](https://github.com/hapijs/yar) project with the following features removed:
 
 - no cookie encryption
 - no lazy mode

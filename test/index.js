@@ -17,7 +17,8 @@ function getCookie(res) {
 
 describe('hapi-simple-session', function() {
 	before(function(done) {
-		server = new Hapi.Server(0);
+		server = new Hapi.Server();
+		server.connection();
 		done();
 	});
 
@@ -54,9 +55,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject({
@@ -101,9 +101,10 @@ describe('hapi-simple-session', function() {
 
 	// Fixes issue https://github.com/hapijs/yar/issues/53
 	it('sets session value then gets it back with faulty server cache interface', function(done) {
-		server = new Hapi.Server(0, {
+		server = new Hapi.Server({
 			cache: require('./faulty-cache')
 		});
+		server.connection();
 
 		server.route([
 			{
@@ -123,9 +124,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject({
@@ -175,8 +175,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject,
+		server.register({
+			register: subject,
 			options: {
 				cache: {
 					expiresIn: 1
@@ -245,9 +245,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject({
@@ -306,9 +305,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject({
@@ -317,7 +315,7 @@ describe('hapi-simple-session', function() {
 				}, function(res) {
 					var cookie = getCookie(res);
 
-					server.pack._caches._default.client.stop();
+					server._caches._default.client.stop();
 
 					server.inject({
 						method: 'GET',
@@ -336,9 +334,10 @@ describe('hapi-simple-session', function() {
 	});
 
 	it('fails setting key/value because of bad key format', function(done) {
-		server = new Hapi.Server(0, {
+		server = new Hapi.Server({
 			debug: false
 		});
+		server.connection();
 
 		server.route([
 			{
@@ -361,9 +360,8 @@ describe('hapi-simple-session', function() {
 			}
 		]);
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject({
@@ -397,9 +395,8 @@ describe('hapi-simple-session', function() {
 			reply(Boom.badRequest('handler error'));
 		});
 
-		server.pack.register({
-			plugin: subject
-		}, function(err) {
+		server.register(subject,
+		function(err) {
 			expect(err).to.not.exist;
 			server.start(function() {
 				server.inject('/', function(res) {
@@ -442,9 +439,8 @@ describe('hapi-simple-session', function() {
 				}
 			]);
 
-			server.pack.register({
-				plugin: subject
-			}, function(err) {
+			server.register(subject,
+			function(err) {
 				expect(err).to.not.exist;
 				server.start(function(err) {
 					server.inject({
@@ -509,9 +505,8 @@ describe('hapi-simple-session', function() {
 				}
 			]);
 
-			server.pack.register({
-				plugin: subject
-			}, function(err) {
+			server.register(subject,
+			function(err) {
 				expect(err).to.not.exist;
 				server.start(function(err) {
 					server.inject({
