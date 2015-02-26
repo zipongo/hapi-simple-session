@@ -1,19 +1,19 @@
 {
   "name": "hapi-simple-session",
-  "version": "2.1.0",
-  "description": "Simple session support for Hapi",
+  "version": "2015.1.0",
+  "description": "Simple session support for Hapi, Zipongo style",
   "main": "lib/index.js",
   "author": {
-    "name": "Valentin Agachi",
-    "url": "http://agachi.name/"
+    "name": "John Irwin",
+    "url": "http://zipongo.com/"
   },
-  "homepage": "https://github.com/avaly/hapi-simple-session",
+  "homepage": "https://github.com/zipongo/hapi-simple-session",
   "repository": {
     "type": "git",
-    "url": "git://github.com/avaly/hapi-simple-session.git"
+    "url": "git://github.com/zipongo/hapi-simple-session.git"
   },
   "bugs": {
-    "url": "https://github.com/avaly/hapi-simple-session/issues"
+    "url": "https://github.com/zipongo/hapi-simple-session/issues"
   },
   "keywords": [
     "hapi",
@@ -47,7 +47,7 @@
     "gulp-jscs": "^1.0.0",
     "gulp-jshint": "^1.8.1",
     "gulp-lab": "^1.0.0",
-    "hapi": "^7.x.x",
+    "hapi": "~8.1.0",
     "husky": "^0.6.1",
     "lab": "^4.2.0"
   }

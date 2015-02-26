@@ -12,7 +12,7 @@ var Hapi = require('hapi'),
 */
 	});
 
-server.pack.register({
+server.register({
 	plugin: SimpleSession,
 	options: {
 		name: 'session', // override session ID cookie name
