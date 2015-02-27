@@ -4,12 +4,16 @@
 
 > A simple Hapi session plugin
 
-Requires: [hapi](https://github.com/hapijs/hapi) 7+
+Requires: [hapi](https://github.com/hapijs/hapi) 8+
 
 Disclaimer: Based on [hapi-simple-session](https://github.com/avaly/hapi-simple-session) project with the following features added:
 
 - request.session.store() for the ability to save session to cache during request
-- cookie is created even if no data is stored in it
+- cookie is:
+  - sent even if no data is stored in it
+  - not resent once it exists on the client.
+  - not sent for OPTIONS method
+- Hapi 8
 
 
 Original Disclaimer: Based on the [yar](https://github.com/hapijs/yar) project with the following features removed:
